@@ -14,5 +14,11 @@ public class Main {
         BigInteger added = Addition.Add(a, b);
         BigInteger correctResult = new BigInteger(new long[] { 4758319895572119213L, 2529949029032038202L, 3790439835461445873L, 157342L });
         System.out.println("Addition correct: " + added.equals(correctResult));
+
+        // Test short division (Result in Base 10: )
+        BigInteger oneDigitDividend = new BigInteger(new long[] { 1337L });
+        BigInteger divided = Division.Divide(a, oneDigitDividend);
+        BigInteger correctShortDivisionResult = new BigInteger(new long[] { });
+        System.out.println("Short division correct: " + divided.equals(correctResult));
     }
 }

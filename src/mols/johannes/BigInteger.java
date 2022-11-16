@@ -1,9 +1,7 @@
 package mols.johannes;
 
-import java.util.Arrays;
-
 public class BigInteger {
-    long[] digits;
+    long[] digits; // Little-endian order
 
     public BigInteger(long[] digits) {
         this.digits = digits;
