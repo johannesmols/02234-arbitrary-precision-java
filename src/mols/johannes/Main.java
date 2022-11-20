@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Main {
 
-    public static long BASE =(2L << 30L) - 1;
+    public static long BASE = (2L << 30L) - 1;
 
     public static void main(String[] args) {
         // In Base 10: 123456789123456789123456789123456789123456789123456789123456789
