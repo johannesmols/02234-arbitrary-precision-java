@@ -1,9 +1,7 @@
 package mols.johannes;
 
-import java.util.Arrays;
-
 public class Multiplication {
-    public static BigInteger Multiply(BigInteger a, BigInteger b) {
+    public static BigInteger Multiply(BigInteger a, BigInteger b, long base) {
         // Temporary variables for addition
 //        long carry;
         long carry = 0;
@@ -32,13 +30,13 @@ public class Multiplication {
 
                 long tmp_res = (a_val * b_val) + carry;
                 if (tmp_res < 0)
-                    tmp_res = Main.BASE + tmp_res + 2;
+                    tmp_res = base + tmp_res + 2;
 
 
                 result.digits[k] += tmp_res;
 
-                carry = result.digits[k] / Main.BASE;
-                result.digits[k] = result.digits[k] % Main.BASE;
+                carry = result.digits[k] / base;
+                result.digits[k] = result.digits[k] % base;
 
                 j++;
             }
