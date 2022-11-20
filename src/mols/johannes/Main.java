@@ -21,17 +21,20 @@ public class Main {
 
         // Test addition (Result in Base 10: 123456790111111111111111111111111111111111111111111111111111110)
 //        BigInteger added = Addition.Add(a, b);
-        BigInteger c = Addition.Add(a, b);
-        BigInteger added = Addition.Add(a,c);
+        BigInteger added = Addition.Add(a, b);
+//        BigInteger added = Addition.Add(a,c);
         System.out.println(Arrays.toString(added.digits));
 
 //        BigInteger correctResult = new BigInteger(new long[] { 4758319895572119213L, 2529949029032038202L, 3790439835461445873L, 157342L});
-        BigInteger correctResult = new BigInteger(new long[] { 691622735, 1823494860, 1167368877, 1268594072, 902747267, 625345864, 1258739 });
+        BigInteger correctResultAddition = new BigInteger(new long[] { 691622735, 1823494860, 1167368877, 1268594072, 902747267, 625345864, 1258739 });
+        BigInteger correctResultMultiplication = new BigInteger(new long[] { 900152130, 197668725, 776425567, 67217174, 612263391, 1948055784, 1430562636, 395302314, 308734505, 1280985670, 690865435, 851989163, 12675 });
 //        System.out.println("Addition correct: " + added.equals(correctResult));
-        System.out.println(Arrays.toString(correctResult.digits));
+        System.out.println(Arrays.toString(correctResultAddition.digits));
 
-//        BigInteger multiplied = Multiplication.Multiply(a,b);
-//        System.out.println(Arrays.toString(multiplied.digits));
+        BigInteger multiplied = Multiplication.Multiply(a,b);
+        System.out.println(Arrays.toString(multiplied.digits));
+        System.out.println(Arrays.toString(correctResultMultiplication.digits));
+
         // Test short division (Result in Base 10: )
 //        BigInteger oneDigitDividend = new BigInteger(new long[] { 1337L });
 //        BigInteger divided = Division.Divide(a, oneDigitDividend);

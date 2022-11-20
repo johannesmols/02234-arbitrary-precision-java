@@ -17,27 +17,34 @@ public class Multiplication {
         int j = 0 ;
         int k = 0 ;
 
-        int a_i = (a_is_larger)? i : j;
-        int b_i = (a_is_larger)? j : i;
 
-//        long[] result = new long[k];
-        BigInteger result = new BigInteger( new long[largest_size + 1] );
+        BigInteger result = new BigInteger( new long[a.digits.length + b.digits.length + 2] );
 
-//        BigInteger c = new BigInteger(result);
 
-        while(a_i <= largest_size || b_i <= smallest_size ||  carry != 0) {
-            long a_val = (a_i <= largest_size - 1) ? a.digits[a_i] : 0;
-            long b_val = (b_i <= smallest_size - 1) ? b.digits[b_i] : 0;
+        while(i <= a.digits.length ||  carry != 0) {
 
-            long sum = a_val + b_val + carry;
+            carry = 0;
+            j= 0;
+            long a_val = (i < a.digits.length) ? a.digits[i] : 0;
+            while(j <= b.digits.length ||  carry != 0){
+                k = i + j;
+                long b_val = (j < b.digits.length) ? b.digits[j] : 0;
 
-            result.digits[k] = sum % Main.BASE;
+                long tmp_res = (a_val * b_val) + carry;
+                if (tmp_res < 0)
+                    tmp_res = Main.BASE + tmp_res + 2;
 
-            carry = sum / Main.BASE;
-            System.out.println(carry);
-            ++a_i;
-            b_i++;
-            ++k;
+
+                result.digits[k] += tmp_res;
+
+                carry = result.digits[k] / Main.BASE;
+                result.digits[k] = result.digits[k] % Main.BASE;
+
+                j++;
+            }
+            result.digits[a.digits.length + j] = carry;
+            i++;
+
         }
         return result;
 

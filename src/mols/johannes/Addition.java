@@ -12,8 +12,8 @@ public class Addition {
         BigInteger result = new BigInteger( new long[a.digits.length] );
 
         while(i <= a.digits.length || j <= b.digits.length ||  carry != 0) {
-            long a_val = (i <= a.digits.length - 1) ? a.digits[i] : 0;
-            long b_val = (j <= b.digits.length - 1) ? b.digits[j] : 0;
+            long a_val = (i < a.digits.length) ? a.digits[i] : 0;
+            long b_val = (j < b.digits.length) ? b.digits[j] : 0;
 
             long sum = a_val + b_val + carry;
 
