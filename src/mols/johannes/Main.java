@@ -11,7 +11,7 @@ public class Main {
         //64-bit
 //        BigInteger a = new BigInteger(new long[] { 497017313360941710L, 8371747259953841529L, 3778830014700828830L, 157342L });
         //32-bit
-        BigInteger a = new BigInteger(new long[] {2027931598, 434255641, 566416197, 1590781320, 100546664, 603720888, 1258739});
+        BigInteger  a = new BigInteger(new long[] {2027931598, 434255641, 566416197, 1590781320, 100546664, 603720888, 1258739});
 //        System.out.println(Arrays.toString(a.digits));
         // In Base 10: 987654321987654321987654321987654321987654321987654321
 
