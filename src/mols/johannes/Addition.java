@@ -3,11 +3,11 @@ package mols.johannes;
 import java.util.Arrays;
 
 public class Addition {
-    public static BigInteger Add(BigInteger a, BigInteger b) {
+    public static BigInteger Add(BigInteger a, BigInteger b, long base) {
         long carry = 0;
-        int i = 0 ;
-        int j = 0 ;
-        int k = 0 ;
+        int i = 0;
+        int j = 0;
+        int k = 0;
 
         BigInteger result = new BigInteger( new long[a.digits.length] );
 
@@ -17,21 +17,23 @@ public class Addition {
 
             long sum = a_val + b_val + carry;
 
-            long tmp_res = sum % Main.BASE;
-            carry = sum / Main.BASE;
-            if (tmp_res < 0)
-                tmp_res = Main.BASE + tmp_res + 2;
+            long tmp_res = sum % base;
+            carry = sum / base;
+            if (tmp_res < 0) {
+                tmp_res = base + tmp_res + 2;
+            }
 
-
-            if (tmp_res < 1)
+            if (tmp_res < 1) {
                 break;
+            }
+
             result.digits[k] = tmp_res;
 
-            ++i;
+            i++;
             j++;
-            ++k;
+            k++;
         }
-        return result;
 
+        return result;
     }
 }
