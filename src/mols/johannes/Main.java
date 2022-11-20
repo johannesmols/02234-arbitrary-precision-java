@@ -20,7 +20,9 @@ public class Main {
 //        System.out.println(Arrays.toString(b.digits));
 
         // Test addition (Result in Base 10: 123456790111111111111111111111111111111111111111111111111111110)
-        BigInteger added = Addition.Add(a, b);
+//        BigInteger added = Addition.Add(a, b);
+        BigInteger c = Addition.Add(a, b);
+        BigInteger added = Addition.Add(a,c);
         System.out.println(Arrays.toString(added.digits));
 
 //        BigInteger correctResult = new BigInteger(new long[] { 4758319895572119213L, 2529949029032038202L, 3790439835461445873L, 157342L});
