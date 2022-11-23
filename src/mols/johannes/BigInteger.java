@@ -1,7 +1,7 @@
 package mols.johannes;
 
 public class BigInteger {
-    long[] digits; // Little-endian order
+    public long[] digits; // Little-endian order
 
     public BigInteger(long[] digits) {
         this.digits = digits;
