@@ -1,5 +1,7 @@
 package mols.johannes.MPN;
 
+import mols.johannes.Main;
+
 public class Addition {
     /** Add x[0:len-1] and y[0:len-1] and write the len least
      * significant words of the result to dest[0:len-1].
@@ -9,14 +11,26 @@ public class Addition {
      */
     public static long add_n (long[] dest, long[] x, long[] y, long len)
     {
+        // Input numbers are 32-bit with 32-bits of zeroes
+
         long carry = 0;
         for (int i = 0; i < len;  i++)
         {
-            // TODO: Index out of bounds exception if arrays are not of equal length
-            carry += ((long) x[i] & 0xffffffffL) + ((long) y[i] & 0xffffffffL);
-            dest[i] = carry;
-            carry >>>= 32;
+            long x_val = (i < x.length) ? x[i] : 0;
+            long y_val = (i < y.length) ? y[i] : 0;
+
+            // Get the values and add them together (binary and is to pad 32-bit ints to 64-bits and set last 32-bit's to zero)
+            carry += x_val + y_val;
+
+            // Original solution: takes first 32-bits (by casting to int), and then shifts remaining 32-bits into position on the left so that it also is an integer
+            // dest[i] = (int) carry;
+            // carry >>>= 32;
+
+            // Our solution: Use modulo base to get value that fits into 32-bit int, and divide by base to get carry value
+            dest[i] = carry % Main.BASE_32_BIT;
+            carry = carry / Main.BASE_32_BIT;
         }
+
         return carry;
     }
 }
