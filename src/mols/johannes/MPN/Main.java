@@ -15,6 +15,8 @@ public class Main {
         TestSingleAddition();
         System.out.println("--- ADDITION ---");
         TestAddition();
+        System.out.println("--- SUBTRACTION ---");
+        TestSubtraction();
         System.out.println("--- SINGLE MULTIPLICATION ---");
         TestSingleMultiplication();
         System.out.println("--- MULTIPLICATION ---");
@@ -52,6 +54,24 @@ public class Main {
         System.out.println("32-bit: Addition, Number 1: " + Arrays.toString(a32.digits));
         System.out.println("32-bit: Addition, Number 2: " + Arrays.toString(b32.digits));
         System.out.println("32-bit: Added: " + Arrays.toString(res32.digits));
+        System.out.println("32-bit: Correct result: " + Arrays.toString(correctRes32.digits));
+        System.out.println("32-bit: Additional carry: " + carry32);
+        System.out.println("32-bit: Is correct: " + res32.equals(correctRes32));
+    }
+
+    public static void TestSubtraction() {
+        BigInteger a32 = new BigInteger(new long[] { 2027931598, 434255641, 566416197, 1590781320, 100546664, 603720888, 1258739 });
+        BigInteger b32 = new BigInteger(new long[] { 811174784, 1389239218, 600952680, 1825296399, 802200602, 21624976 });
+
+        long[] res32Digits = new long[Math.max(a32.digits.length, b32.digits.length)];
+        long carry32 = Operations.sub_n(res32Digits, a32.digits, b32.digits, res32Digits.length, mols.johannes.Main.BASE_32_BIT);
+
+        BigInteger res32 = new BigInteger(res32Digits);
+        BigInteger correctRes32 = new BigInteger(new long[] { 1216756814, 1192500070, 2112947163, 1912968567, 1445829708, 582095911, 1258739 });
+
+        System.out.println("32-bit: Subtraction, Number 1: " + Arrays.toString(a32.digits));
+        System.out.println("32-bit: Subtraction, Number 2: " + Arrays.toString(b32.digits));
+        System.out.println("32-bit: Subtracted: " + Arrays.toString(res32.digits));
         System.out.println("32-bit: Correct result: " + Arrays.toString(correctRes32.digits));
         System.out.println("32-bit: Additional carry: " + carry32);
         System.out.println("32-bit: Is correct: " + res32.equals(correctRes32));

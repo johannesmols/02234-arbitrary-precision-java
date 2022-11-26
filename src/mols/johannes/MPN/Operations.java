@@ -58,6 +58,32 @@ public class Operations {
         return carry;
     }
 
+    /** Subtract Y[0:size-1] from X[0:size-1], and write
+     * the size least significant words of the result to dest[0:size-1].
+     * Return borrow, either 0 or 1.
+     * This is basically the same as gmp's mpn_sub_n function.
+     */
+    public static long sub_n (long[] dest, long[] x, long[] y, long len, long base)
+    {
+        long carry = 0;
+        for (int i = 0;  i < len;  i++)
+        {
+            long x_val = (i < x.length) ? x[i] : 0;
+            long y_val = (i < y.length) ? y[i] : 0;
+
+            y_val += carry;	/* add previous carry to subtrahend */
+
+            // Invert the high-order bit, because: (unsigned) X > (unsigned) Y
+            // iff: (int) (X^0x80000000) > (int) (Y^0x80000000).
+            carry = (y_val ^ 0x8000000000000000L) < (carry ^ 0x8000000000000000L) ? 1 : 0;
+            y_val = x_val - y_val;
+            carry += (y_val ^ 0x8000000000000000L) > (carry ^ 0x8000000000000000L) ? 1 : 0;
+            dest[i] = y_val;
+        }
+
+        return carry;
+    }
+
     /** Multiply x[0:len-1] by y, and write the len least
      * significant words of the product to dest[0:len-1].
      * Return the most significant word of the product.
