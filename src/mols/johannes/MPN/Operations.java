@@ -3,6 +3,30 @@ package mols.johannes.MPN;
 // Code adjusted from: https://opensource.apple.com/source/gcc/gcc-1435/libjava/gnu/java/math/MPN.java.auto.html
 
 public class Operations {
+    /** Add x[0:size-1] and y, and write the size least
+     * significant words of the result to dest.
+     * Return carry, either 0 or 1.
+     * All values are unsigned.
+     * This is basically the same as gmp's mpn_add_1. */
+    public static long add_1 (long[] dest, long[] x, long y, long base)
+    {
+        long carry = y;
+        for (int i = 0;  i < x.length;  i++)
+        {
+            carry += x[i];
+
+            // Original solution: takes first 32-bits (by casting to int), and then shifts remaining 32-bits into position on the left so that it also is an integer
+            // dest[i] = (int) carry;
+            // carry >>= 32;
+
+            // Our solution: Use modulo base to get value that fits into 32-bit int, and divide by base to get carry value
+            dest[i] = carry % base;
+            carry = carry / base;
+        }
+
+        return carry;
+    }
+
     /** Add x[0:len-1] and y[0:len-1] and write the len least
      * significant words of the result to dest[0:len-1].
      * All words are treated as unsigned.

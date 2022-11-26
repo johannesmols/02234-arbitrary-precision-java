@@ -11,12 +11,32 @@ public class Main {
     public static long BASE_64_BIT = (2L << 62L) - 1L;
 
     public static void main(String[] args) {
+        System.out.println("--- SINGLE ADDITION ---");
+        TestSingleAddition();
         System.out.println("--- ADDITION ---");
         TestAddition();
         System.out.println("--- SINGLE MULTIPLICATION ---");
         TestSingleMultiplication();
         System.out.println("--- MULTIPLICATION ---");
         TestMultiplication();
+    }
+
+    public static void TestSingleAddition() {
+        BigInteger a32 = new BigInteger(new long[] { 2027931598, 434255641, 566416197, 1590781320, 100546664, 603720888, 1258739 });
+        BigInteger b32 = new BigInteger(new long[] { 1337 });
+
+        long[] res32Digits = new long[a32.digits.length];
+        long carry32 = Operations.add_1(res32Digits, a32.digits, b32.digits[0], mols.johannes.Main.BASE_32_BIT);
+
+        BigInteger res32 = new BigInteger(res32Digits);
+        BigInteger correctRes32 = new BigInteger(new long[] { 2027932935, 434255641, 566416197, 1590781320, 100546664, 603720888, 1258739 });
+
+        System.out.println("32-bit: Addition, Number 1: " + Arrays.toString(a32.digits));
+        System.out.println("32-bit: Addition, Number 2: " + Arrays.toString(b32.digits));
+        System.out.println("32-bit: Single added: " + Arrays.toString(res32.digits));
+        System.out.println("32-bit: Correct result: " + Arrays.toString(correctRes32.digits));
+        System.out.println("32-bit: Additional carry: " + carry32);
+        System.out.println("32-bit: Is correct: " + res32.equals(correctRes32));
     }
 
     public static void TestAddition() {
