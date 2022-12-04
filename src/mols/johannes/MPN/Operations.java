@@ -75,9 +75,15 @@ public class Operations {
 
             // Invert the high-order bit, because: (unsigned) X > (unsigned) Y
             // iff: (int) (X^0x80000000) > (int) (Y^0x80000000).
-            carry = (y_val ^ 0x8000000000000000L) < (carry ^ 0x8000000000000000L) ? 1 : 0;
+            /*carry = (y_val ^ 0x8000000000000000L) < (carry ^ 0x8000000000000000L) ? 1 : 0;
             y_val = x_val - y_val;
             carry += (y_val ^ 0x8000000000000000L) > (carry ^ 0x8000000000000000L) ? 1 : 0;
+            dest[i] = y_val;*/
+
+            // Our solution
+            carry = (y_val ^ base) < (carry ^ base) ? 1 : 0;
+            y_val = x_val - y_val;
+            carry += (y_val ^ base) > (x_val ^ base) ? 1 : 0;
             dest[i] = y_val;
         }
 
