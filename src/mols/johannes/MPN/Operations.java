@@ -81,9 +81,8 @@ public class Operations {
             dest[i] = y_val;*/
 
             // Our solution
-            carry = (y_val ^ base) < (carry ^ base) ? 1 : 0;
-            y_val = x_val - y_val;
-            carry += (y_val ^ base) > (x_val ^ base) ? 1 : 0;
+            y_val = (x_val > y_val) ? (x_val - y_val) : (base - y_val + x_val);
+            carry = (x_val > y_val) ? 0 : 1;
             dest[i] = y_val;
         }
 
